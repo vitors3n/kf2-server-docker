@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  kf2server:
+    build: .
+    container_name: kf2server
+    ports:
+      - "7777:7777/udp"
+      - "8080:8080/tcp"
+    volumes:
+      - ./update.txt:/home/kf2server/games/killingfloor/update.txt
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    tty: true
