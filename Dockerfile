@@ -2,13 +2,12 @@ FROM debian:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository non-free && \
-    dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -y steamcmd
-
+RUN apt-get update
+RUN dpkg --add-architecture i386
+RUN echo "deb http://deb.debian.org/debian/ bookworm main contrib non-free" > /etc/apt/sources.list.d/non-free.list
+RUN echo "deb-src http://deb.debian.org/debian/ bookworm main contrib non-free" > /etc/apt/sources.list.d/non-free.list
+RUN apt-get update
+RUN apt-get install -y steamcmd
 RUN useradd -m -s /bin/bash kf2server
 RUN mkdir -p /home/kf2server/games/killingfloor
 RUN chown -R kf2server:kf2server /home/kf2server/games
