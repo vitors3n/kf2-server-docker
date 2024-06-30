@@ -4,8 +4,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN dpkg --add-architecture i386
-RUN echo "deb http://deb.debian.org/debian/ bookworm main contrib non-free" > /etc/apt/sources.list.d/non-free.list
-RUN echo "deb-src http://deb.debian.org/debian/ bookworm main contrib non-free" > /etc/apt/sources.list.d/non-free.list
+RUN rm -rf /etc/apt/sources.list.d/*
+COPY debian.sources /etc/apt/sources.list.d/
 RUN apt-get update
 RUN apt-get install -y steamcmd
 RUN useradd -m -s /bin/bash kf2server
