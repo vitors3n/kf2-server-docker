@@ -1,0 +1,4 @@
+force_install_dir /home/kf2server/games/killingfloor
+login anonymous
+app_update 232130 validate
+quit
